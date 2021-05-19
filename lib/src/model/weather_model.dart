@@ -1,12 +1,12 @@
-import 'package:weather_app/src/model/weather_icon_model.dart';
-
 class WeatherModel {
   final String cityName;
   final int temperature;
   final int windSpeed;
   final int humidity;
   final int visibility;
-  final List<WeatherIconModel> weatherIcons;
+  final String weatherDescription;
+  final String weatherIcon;
+  final String timeZone;
 
   WeatherModel({
     this.cityName,
@@ -14,7 +14,9 @@ class WeatherModel {
     this.windSpeed,
     this.humidity,
     this.visibility,
-    this.weatherIcons,
+    this.weatherDescription,
+    this.weatherIcon,
+    this.timeZone,
   });
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
@@ -24,9 +26,9 @@ class WeatherModel {
       windSpeed: json['current']['wind_speed'],
       humidity: json['current']['humidity'],
       visibility: json['current']['visibility'],
-      weatherIcons: (json['current']['weather_icons'] as List)
-          .map((e) => WeatherIconModel.fromJson(e))
-          .toList(),
+      weatherDescription: json['current']['weather_descriptions'][0],
+      weatherIcon: json['current']['weather_icons'][0],
+      timeZone: json['location']['timezone_id'],
     );
   }
 }

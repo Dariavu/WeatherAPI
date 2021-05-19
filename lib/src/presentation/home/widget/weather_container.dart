@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/src/model/weather_model.dart';
 
 class WeatherContainer extends StatelessWidget {
+  final WeatherModel weatherModel;
+
+  WeatherContainer({
+    @required this.weatherModel,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,19 +22,19 @@ class WeatherContainer extends StatelessWidget {
           Positioned(
             top: 25,
             left: 20,
-            child: Icon(
-              Icons.wb_sunny,
-              size: 50,
-              color: Colors.yellow,
+            child: Image.network(
+              weatherModel.weatherIcon,
+              width: 60,
+              height: 60,
             ),
           ),
           Positioned(
             bottom: 30,
             left: 20,
             child: Text(
-              'Heavy Rain',
+              weatherModel.weatherDescription,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 17,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -37,7 +44,7 @@ class WeatherContainer extends StatelessWidget {
             bottom: 10,
             left: 20,
             child: Text(
-              'Morning',
+              '${weatherModel.timeZone}',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
@@ -49,7 +56,7 @@ class WeatherContainer extends StatelessWidget {
             right: 20,
             top: 30,
             child: Text(
-              '29°',
+              '${weatherModel.temperature}°',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 50,
@@ -61,9 +68,10 @@ class WeatherContainer extends StatelessWidget {
             bottom: 40,
             right: 20,
             child: Text(
-              'Feels like 30°',
+              '${weatherModel.cityName}',
               style: TextStyle(
                 color: Colors.white,
+                fontSize: 20,
               ),
             ),
           ),

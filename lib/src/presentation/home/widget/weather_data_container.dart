@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:weather_app/src/const/text_constatnts.dart';
+import 'package:weather_app/src/model/weather_model.dart';
 
 class WeatherData extends StatelessWidget {
+  final WeatherModel weatherModel;
+
+  WeatherData({
+    @required this.weatherModel,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,15 +28,15 @@ class WeatherData extends StatelessWidget {
           children: [
             DataColumn(
               name: TextConstants.WIND,
-              data: '33 m/h',
+              data: '${weatherModel.windSpeed} m/h',
             ),
             DataColumn(
               name: TextConstants.HUMIDITY,
-              data: '23 km',
+              data: '${weatherModel.humidity} km',
             ),
             DataColumn(
               name: TextConstants.VISIBILITY,
-              data: '64%',
+              data: '${weatherModel.visibility}%',
             ),
           ],
         ),
