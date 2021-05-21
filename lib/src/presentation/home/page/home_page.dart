@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   void fetchData() async {
     final response = await get(
-        'http://api.weatherstack.com/current?access_key=dd3957ecb139fc847163a22ba3cec74a&query=Lviv');
+        'http://api.weatherstack.com/current?access_key=dd3957ecb139fc847163a22ba3cec74a&query=Kiev');
     final parsedJson = json.decode(response.body);
 
     setState(() {

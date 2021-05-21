@@ -11,70 +11,61 @@ class WeatherContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(20),
       height: 150,
       width: 300,
       decoration: BoxDecoration(
         color: Colors.blue[600],
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Stack(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Positioned(
-            top: 25,
-            left: 20,
-            child: Image.network(
-              weatherModel.weatherIcon,
-              width: 60,
-              height: 60,
-            ),
-          ),
-          Positioned(
-            bottom: 30,
-            left: 20,
-            child: Text(
-              weatherModel.weatherDescription,
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(weatherModel.weatherIcon),
+              SizedBox(
+                height: 10,
               ),
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            left: 20,
-            child: Text(
-              '${weatherModel.timeZone}',
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+              Text(
+                weatherModel.weatherDescription,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ),
-          Positioned(
-            right: 20,
-            top: 30,
-            child: Text(
-              '${weatherModel.temperature}°',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
+              Text(
+                weatherModel.timeZone,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                ),
               ),
-            ),
+            ],
           ),
-          Positioned(
-            bottom: 40,
-            right: 20,
-            child: Text(
-              '${weatherModel.cityName}',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '${weatherModel.temperature}°',
+                style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ),
+              Text(
+                '${weatherModel.cityName}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
